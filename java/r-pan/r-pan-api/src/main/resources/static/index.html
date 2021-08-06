@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>短链服务</title>
+    <link rel="stylesheet" href="layer/theme/default/layer.css" media="all">
+    <link href="fonts/font-awesome.min.css" rel="stylesheet" media="screen">
+    <link href="css/my.css" rel="stylesheet" media="screen">
+    <style>
+    </style>
+</head>
+<body>
+<nav>
+    <div class="nav-li" style="background-image: url('images/cloud_storage.png');background-size: 27px;">星盘</div>
+    <div class="nav-li" style="background-image: url('images/blog.png');">博客</div>
+</nav>
+
+<div class="conversion">
+    <div class="features">
+        <div class="title">管理短网址、生成二维码</div>
+        <div class="service">二维码，流量统计，防封，跳过红标</div>
+        <div class="input-box">
+            <input id="url" type="text" value="" autocomplete="off" placeholder="填写待转换网址">
+            <button class="blue-btn" onclick="createShortLink()">转换</button>
+            <span class="seoicn" style="color: rgb(176, 190, 197);transition: all 1.5s ease 0s;">
+                <i class="fa fa-search"></i>
+            </span>
+        </div>
+    </div>
+
+    <div class="short-link-show" style="display: none">
+
+        <div class="trans-opt">
+            <div  class="trans-opt-warning">
+                <span >提示：链接仅提供短时间使用，不保证长久有效</span>
+            </div>
+
+            <div class="trs-web">
+                <span class="w-til">短网址：</span>
+                <span class="w-inp">
+                    <div class="el-input">
+                        <input type="text" id="input-short-link" readonly="readonly" autocomplete="off" value="">
+                    </div>
+                </span>
+                <span class="w-btn">
+                    <button id="copy-link" type="button" class="el-button el-button-primary">
+                        <span>点击复制</span>
+                    </button>
+                </span>
+            </div>
+
+            <div class="trs-qr">
+                <span class="w-til">二维码：</span>
+                <div class="w-cont">
+                    <div class="qr-frame">
+                        <div id="qr-code"></div>
+                        <div class="qr-download">
+                            <button type="button" class="el-button el-button-primary is-plain" onclick="downloadClick()">
+                                <span>下载二维码</span>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="ori-web">
+                <span class="w-til">原网址:</span>
+                <div class="w-cont"></div>
+            </div>
+        </div>
+
+        <div class="trans-sec3">
+            <div class="reminder">
+                <h4 class="ts-til">温馨提示：</h4>
+                <div class="desc ">
+                    <p>1、短网址(Short URL)，形式上缩短网址，访问短网址可以跳转到原网址，用于微信自动回复、朋友圈、邮件营销、短信推广等处效果最佳</p>
+                    <p>2、上面的二维码是根据短网址制作的，直接访问短网址和扫码二维码效果相同，用于图片推广、印刷推广，效果更佳</p>
+                    <p>3、二维码为清晰型，可直接保存打印，打印版本二维码也可扫描，二维码纠错等级为H</p>
+                    <p>4、不允许发布色情，赌博等违法信息</p>
+                    <p>5、您可以将短网址分享给你的朋友</p></div>
+            </div>
+            <div class="disclaimer">
+                <h4 class="ts-til">免责声明：</h4>
+                <div class="desc"><p>1、本站免费使用!
+                    专门提供短网址服务，短网址均由用户自主生成，所跳转网站内容均与本站无关!</p>
+                    <p>
+                        2、其一切因使用本站短网址而可能遭致的意外、疏忽、侵权及其造成的损失（包括因下载被搜索链接到的第三方网站内容而感染电脑病毒），本站对其概不负责，亦不承担任何法律责任。</p></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <div class="copyright">
+        <div style="display: none">
+            <span>
+                <a href="/" aria-current="page" class="router-link-exact-active router-link-active">常见问题</a>
+            </span>
+            <span>
+                <a href="/userProtocol" class="">用户协议</a>
+            </span>
+            <span>
+                <a href="/privacyPolicy" class="">隐私政策</a>
+            </span>
+            <span>
+                <a href="/managementNorms" class="">内容管理规范</a>
+            </span>
+            <span>
+                <a href="/apidoc" class="">api接口文档</a>
+            </span>
+        </div>
+
+        <div class="foot_5" style="">Copyright © 2020 版权所有</div>
+        <div> 免责声明：短网址链接全部由访客自主生成，所跳转网页内容与本站无关!<br> 本平台禁止违法违规内容生成短链接，如有发现一律删除！<br></div>
+    </div>
+</footer>
+
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/qrcodejs/1.0.0/qrcode.js"></script>
+<script src="layer/layer.js"></script>
+<script>
+    $(function (){
+        $( '#url' ).focus( function(){
+            //获取焦点时执行的函数
+            $(".conversion .features .input-box .seoicn").css("color","rgb(62, 161, 226)");
+        } )
+
+        $( '#url' ).blur( function(){
+            //失去焦点时执行的函数
+            $(".conversion .features .input-box .seoicn").css("color","rgb(176, 190, 197)");
+        } )
+
+
+        qrcodeInit();
+    });
+    var qrcode = null;
+
+    //初始化
+    function qrcodeInit() {
+        qrcode = new QRCode("qr-code", {
+            text: "",
+            width: 200,
+            height: 200,
+            colorDark: "#000000",
+            colorLight: "#ffffff",
+            correctLevel: QRCode.CorrectLevel.H
+        });
+    }
+
+    //生成短链接
+    function createShortLink() {
+        var url = $("#url").val();
+        if (url == null || url == "" || url == "undefined" || !/[^\s]/.test(url)) {
+            layer.msg('请填写待转换的地址！！！', {icon: 0});
+            return;
+        }
+
+        $.ajax({
+            type: "POST",
+            url: "/link/createShortLink",
+            data: {
+                urlAddress: url
+            },
+            async: false,
+            success: function (result) {
+                if (result.status == 1) {
+                    layer.msg(result.message, {icon: 0});
+                } else {
+                    $("div[class='short-link-show']").show();
+                    $("#input-short-link").val(result.data);
+                    $(".trans-opt .ori-web .w-cont").html(url);
+                    qrcode.clear(); // 清除代码
+                    qrcode.makeCode(result.data); // 生成另外一个二维码
+                }
+            }
+        });
+    }
+
+    //二维码下载
+    function downloadClick () {
+        // 获取base64的图片节点
+        var img = $('#qr-code img')[0];
+        // 构建画布
+        var canvas = document.createElement('canvas');
+        canvas.width = img.width;
+        canvas.height = img.height;
+        canvas.getContext('2d').drawImage(img, 0, 0);
+        // 构造url
+        url = canvas.toDataURL('image/png');
+        // 构造a标签并模拟点击
+        var temp_id = "downloadLink" + Date.parse(new Date());
+        $(img).after("<a id='" + temp_id + "' style='display: none'></a>");
+        var downloadLink = $('#' + temp_id).attr("href", url).attr("download", "二维码.png");
+        downloadLink[0].click();
+        //移除创建的元素
+        $("a").remove('#' + temp_id);
+    }
+
+    //短链复制
+    $("#copy-link").click(function(){
+        copy("input-short-link","value");
+    });
+
+    /**
+     * 一键粘贴
+     * @param  {String} id [需要粘贴的内容]
+     * @param  {String} attr [需要 copy 的属性，默认是 innerText，主要用途例如赋值 a 标签上的 href 链接]
+     *
+     * range + selection
+     *
+     * 1.创建一个 range
+     * 2.把内容放入 range
+     * 3.把 range 放入 selection
+     *
+     * 注意：参数 attr 不能是自定义属性
+     * 注意：对于 user-select: none 的元素无效
+     * 注意：当 id 为 false 且 attr 不会空，会直接复制 attr 的内容
+     */
+    function  copy (id, attr) {
+        let target = null;
+
+        if (attr) {
+            target = document.createElement('div');
+            target.id = 'tempTarget';
+            target.style.opacity = '0';
+            if (id) {
+                let curNode = document.querySelector('#' + id);
+                target.innerText = curNode[attr];
+            } else {
+                target.innerText = attr;
+            }
+            document.body.appendChild(target);
+        } else {
+            target = document.querySelector('#' + id);
+        }
+
+        try {
+            let range = document.createRange();
+            range.selectNode(target);
+            window.getSelection().removeAllRanges();
+            window.getSelection().addRange(range);
+            document.execCommand('copy');
+            window.getSelection().removeAllRanges();
+            console.log('复制成功')
+        } catch (e) {
+            console.log('复制失败')
+        }
+
+        if (attr) {
+            // remove temp target
+            target.parentElement.removeChild(target);
+        }
+    }
+</script>
+</body>
+
+</html>

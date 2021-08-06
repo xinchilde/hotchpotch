@@ -1,5 +1,6 @@
 package com.rubin.rpan.modules.share.controller;
 
+import com.rubin.rpan.common.annotation.LogIgnore;
 import com.rubin.rpan.common.annotation.NeedLogin;
 import com.rubin.rpan.common.annotation.NeedShareCode;
 import com.rubin.rpan.common.response.R;

@@ -646,6 +646,7 @@ public class UserFileServiceImpl implements IUserFileService {
         HttpUtil.addCorsResponseHeader(response);
         response.setHeader(FileConstant.CONTENT_TYPE_STR, contentTypeValue);
         response.setContentType(contentTypeValue);
+        response.setCharacterEncoding("utf-8");
     }
 
     /**

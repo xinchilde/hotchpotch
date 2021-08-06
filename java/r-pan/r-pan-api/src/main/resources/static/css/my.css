@@ -1,0 +1,309 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+input:focus {
+    outline: none;
+}
+
+a, button,el-button {
+    cursor: pointer;
+    text-decoration: none;
+}
+
+nav {
+    width: 100%;
+    height: 80px;
+    margin: 0 auto;
+    line-height: 80px;
+    position: relative;
+    text-align: center;
+    color: #fff;
+    background-color: #008df2;
+}
+
+nav .nav-li {
+    width: 100px;
+    display: inline-block;
+    margin: 0 10px;
+    vertical-align: top;
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: 20px;
+}
+
+nav .nav-li:hover {
+    cursor: pointer;
+}
+
+/*主体样式*/
+.conversion {
+    width: 100%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.conversion .features {
+    text-align: center;
+    margin: 0 auto;
+}
+
+.conversion .features .title {
+    width: 100%;
+    height: 40px;
+    font-size: 40px;
+    color: #008df2;
+    margin-bottom: 30px;
+}
+
+.conversion .features .service {
+    width: 100%;
+    height: 22px;
+    font-size: 22px;
+    color: #999;
+    margin-bottom: 80px;
+}
+
+.conversion .features .input-box {
+    width: 100%;
+    height: 45px;
+    position: relative;
+}
+
+.conversion .features .input-box input {
+    width: 570px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 16px;
+    border: 1px solid #bfbfbf;
+    border-right: 0;
+    margin-right: -5px;
+    border-radius: 6px 0 0 6px;
+    padding: 3px 0 0 50px;
+    color: #00000099;
+}
+
+.conversion .features .input-box input::-webkit-input-placeholder {
+    font-size: 15px;
+    vertical-align: middle;
+}
+
+.conversion .features .input-box button {
+    width: 120px;
+    height: 45px;
+    outline: none;
+    margin: 0;
+    padding: 0;
+    border: 1px solid transparent;
+    vertical-align: bottom;
+    color: #fff;
+    font-size: 16px;
+}
+
+.conversion .features .input-box .blue-btn {
+    background-color: #008df2d9;
+    border-radius: 0 6px 6px 0;
+}
+
+.conversion .features .input-box .blue-btn:hover {
+    background-color: #008df2;
+}
+
+.conversion .features .input-box .seoicn {
+    position: absolute;
+    left: calc(50% - 350px);
+    top: 10px;
+    color: #b0bec5;
+    font-size: 18px;
+}
+
+.conversion .features .tips {
+    width: 100%;
+    height: 50px;
+    padding-top: 10px;
+}
+
+.conversion .features .prompt {
+    width: 100%;
+    height: 16px;
+    color: #999;
+}
+
+.trans-opt {
+    width: 740px;
+    background-color: #fff;
+    overflow: hidden;
+    margin: 25px auto 0 auto;
+    padding: 20px 60px 10px 60px;
+}
+
+.trans-opt .trans-opt-warning {
+    height: 18px;
+    background-color: #fdf6ec;
+    color: #e6a23c;
+    font-size: 13px;
+    line-height: 18px;
+    padding: 8px 16px;
+    border-radius: 4px;
+    margin-bottom: 22px;
+}
+.trans-opt .trans-opt-warning span{
+    background-image: url('../images/icon/icon-tips.png');
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: 20px;
+    padding-left: 28px;
+}
+
+.el-input {
+    display: inline-block;
+}
+
+#input-short-link {
+    width: 270px;
+    height: 40px;
+    display: inline-block;
+    line-height: 40px;
+    padding: 0 15px;
+    border: 1px solid #dcdfe6;
+    border-radius: 4px;
+    color: #606266;
+    font-size: inherit;
+    -webkit-appearance: none;
+    background-color: #fff;
+    background-image: none;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    outline: 0;
+    -webkit-transition: border-color .2s cubic-bezier(.645, .045, .355, 1);
+    transition: border-color .2s cubic-bezier(.645, .045, .355, 1);
+}
+
+.el-button {
+    display: inline-block;
+    line-height: 1;
+    white-space: nowrap;
+    cursor: pointer;
+    background: #fff;
+    border: 1px solid #dcdfe6;
+    color: #606266;
+    -webkit-appearance: none;
+    text-align: center;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    outline: 0;
+    margin: 0;
+    -webkit-transition: .1s;
+    transition: .1s;
+    font-weight: 500;
+    padding: 12px 20px;
+    font-size: 14px;
+    border-radius: 4px;
+}
+
+.el-button-primary {
+    color: #fff;
+    background-color: #409effde;
+    border-color: #409eff;
+}
+
+.el-button-primary:hover {
+    background-color: #409eff;
+}
+
+.el-button-primary.is-plain {
+    color: #409eff;
+    background: #ecf5ff;
+    border-color: #b3d8ff;
+}
+.is-plain:hover{
+    background-color: #e0edfd;
+}
+
+.trans-opt .trs-qr {
+    margin-top: 35px;
+}
+
+.trans-opt  .w-til {
+    display: inline-block;
+    width: 66px;
+    height: 40px;
+    vertical-align: top;
+}
+.trans-opt .trs-web .w-til {
+    vertical-align: unset;
+}
+
+.trans-opt .w-cont {
+    display: inline-block;
+    width: 420px;
+}
+
+.trans-opt .w-cont .qr-frame #qr-code {
+    display: inline-block;
+    width: 200px;
+    height: 200px;
+    vertical-align: top;
+}
+
+.trans-opt .w-cont .qr-frame .qr-download {
+    display: inline-block;
+    width: 180px;
+    height: 200px;
+    line-height: 200px;
+    margin-left: 20px;
+    vertical-align: top;
+}
+
+.trans-opt .ori-web {
+    margin-top: 30px;
+    color: #999;
+    word-break: break-all;
+}
+
+.trans-opt .ori-web .w-cont {
+    width: 666px;
+}
+
+.trans-sec3 {
+    padding: 30px 40px;
+    width: 855px;
+    background-color: #fff;
+    overflow: hidden;
+    margin: 10px auto 0 auto;
+    font-size: 14px;
+}
+
+.trans-sec3 .desc {
+    color: #666;
+    line-height: 30px;
+    margin-top: 8px;
+}
+
+.trans-sec3 .desc p {
+    margin: 0;
+    padding: 0;
+}
+
+/*底部样式*/
+footer {
+    width: 100%;
+    background-color: #f5f5f5;
+    position: absolute;
+    bottom: 0;
+}
+
+footer .copyright {
+    width: 100%;
+    /* height: 140px; */
+    padding-top: 25px;
+    padding-bottom: 20px;
+    text-align: center;
+    margin: 0 auto;
+    color: #666;
+}

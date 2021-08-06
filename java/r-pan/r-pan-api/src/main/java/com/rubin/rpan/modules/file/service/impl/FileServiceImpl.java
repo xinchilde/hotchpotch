@@ -9,6 +9,7 @@ import com.rubin.rpan.modules.file.constant.FileConstant;
 import com.rubin.rpan.modules.file.dao.RPanFileMapper;
 import com.rubin.rpan.modules.file.entity.RPanFile;
 import com.rubin.rpan.modules.file.service.IFileService;
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -118,7 +119,7 @@ public class FileServiceImpl implements IFileService {
         }
         try {
             targetFile.createNewFile();
-            file.transferTo(targetFile);
+            FileUtils.copyInputStreamToFile(file.getInputStream(), targetFile);
         } catch (IOException e) {
             log.error("上传失败", e);
             throw new RPanException("上传失败");

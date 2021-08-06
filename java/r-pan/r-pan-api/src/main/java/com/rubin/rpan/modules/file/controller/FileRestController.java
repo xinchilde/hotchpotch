@@ -279,4 +279,22 @@ public class FileRestController {
         iUserFileService.preview(fileId, response, UserIdUtil.get());
     }
 
+    //TODO 编写分享功能 (记录访问IP与浏览器记录) 参考上面的preview接口
+    /**
+     * 预览单个文件
+     *
+     * @return
+     */
+    @ApiOperation(
+            value = "公开访问",
+            notes = "该接口提供了免登录访问公开文件的功能",
+            consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE,
+            produces = MediaType.APPLICATION_JSON_UTF8_VALUE
+    )
+    @GetMapping("file/preview/{fileId}")
+    @LogIgnore
+    public void openPreview(@NotNull(message = "文件id不能为空") @PathVariable(value = "fileId", required = false) Long fileId,
+                        HttpServletResponse response) {
+//        iUserFileService.preview(fileId, response, UserIdUtil.get());
+    }
 }
