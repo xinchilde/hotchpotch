@@ -1,0 +1,15 @@
+创建scrapy项目的命令： scrapy startproject [项目名称]
+生成的目录和文件结构如下：
+(python3)--> code tree
+.
+└─— scrapy_taobao
+    ├─—scrapy_taobao （总目录）
+    |  ├─—__init__.py
+    |  ├─—items.py （项目文件，自定义需要爬取的内容）
+    |  ├─—middlewares.py（自定义中间件文件）
+    |  ├─—pipelines.py（管道文件，可用来保存数据）
+    |  ├─—settings.py（设置文件，UA,启动管道）
+    │  └─—spiders （爬虫文件夹）
+    │   ├─—__init__.py
+    │   └─—__pycache__
+    └─—scrapy.cfg （配置文件）
